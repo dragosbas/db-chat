@@ -1,4 +1,4 @@
-import { User, Settings, LogOut, ChevronRight } from "lucide-react";
+import { User, Settings, LogOut, MessageSquare, Check, LogIn } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Sidebar,
@@ -43,6 +43,12 @@ const MainSidebar = ({ isOpen }: MainSidebarProps) => {
                   <span>Profile</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors border-b border-gray-800">
+                  <MessageSquare className="w-4 h-4" />
+                  <span>Chats</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -58,7 +64,7 @@ const MainSidebar = ({ isOpen }: MainSidebarProps) => {
                   <SidebarMenuButton
                     className={cn(
                       "w-full flex items-center justify-between px-4 py-2 rounded-lg transition-colors hover:bg-gray-800/50 border-b border-gray-800",
-                      platform.status === "connected" && "text-green-400"
+                      platform.status === "connected" ? "text-green-400" : "text-gray-400"
                     )}
                   >
                     <div className="flex items-center gap-2">
@@ -72,7 +78,19 @@ const MainSidebar = ({ isOpen }: MainSidebarProps) => {
                       />
                       <span>{platform.name}</span>
                     </div>
-                    <ChevronRight className="w-4 h-4" />
+                    <div className="flex items-center gap-1">
+                      {platform.status === "connected" ? (
+                        <>
+                          <Check className="w-4 h-4" />
+                          <span className="text-sm">Connected</span>
+                        </>
+                      ) : (
+                        <>
+                          <LogIn className="w-4 h-4" />
+                          <span className="text-sm">Log in</span>
+                        </>
+                      )}
+                    </div>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
