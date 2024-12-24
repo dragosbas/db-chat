@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import MainSidebar from "./chat/MainSidebar";
 import ChatPartnersList from "./chat/ChatPartnersList";
 import ChatArea from "./chat/ChatArea";
@@ -61,15 +62,17 @@ const ChatLayout = () => {
   const [selectedPartner, setSelectedPartner] = useState<ChatPartner | null>(null);
 
   return (
-    <div className="flex h-screen bg-[#1A1F2C]">
-      <MainSidebar isOpen={isMainMenuOpen} setIsOpen={setIsMainMenuOpen} />
-      <ChatPartnersList
-        partners={mockChatPartners}
-        selectedPartner={selectedPartner}
-        onSelectPartner={setSelectedPartner}
-      />
-      <ChatArea selectedPartner={selectedPartner} messages={mockMessages} />
-    </div>
+    <SidebarProvider>
+      <div className="flex h-screen bg-[#1A1F2C]">
+        <MainSidebar isOpen={isMainMenuOpen} setIsOpen={setIsMainMenuOpen} />
+        <ChatPartnersList
+          partners={mockChatPartners}
+          selectedPartner={selectedPartner}
+          onSelectPartner={setSelectedPartner}
+        />
+        <ChatArea selectedPartner={selectedPartner} messages={mockMessages} />
+      </div>
+    </SidebarProvider>
   );
 };
 
