@@ -1,5 +1,6 @@
 import { User, Settings, LogOut, MessageSquare, Check, LogIn } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -18,9 +19,9 @@ interface MainSidebarProps {
 
 const MainSidebar = ({ isOpen }: MainSidebarProps) => {
   const platforms = [
-    { name: "WhatsApp", status: "connected" },
-    { name: "Facebook", status: "connected" },
-    { name: "Instagram", status: "pending" },
+    { name: "WhatsApp", status: "connected", id: "whatsapp" },
+    { name: "Facebook", status: "connected", id: "facebook" },
+    { name: "Instagram", status: "pending", id: "instagram" },
   ];
 
   return (
@@ -61,7 +62,8 @@ const MainSidebar = ({ isOpen }: MainSidebarProps) => {
             <SidebarMenu>
               {platforms.map((platform) => (
                 <SidebarMenuItem key={platform.name}>
-                  <SidebarMenuButton
+                  <Link 
+                    to={`/platform/${platform.id}`}
                     className={cn(
                       "w-full flex items-center justify-between px-4 py-2 rounded-lg transition-colors hover:bg-gray-800/50 border-b border-gray-800",
                       platform.status === "connected" ? "text-green-400" : "text-gray-400"
@@ -91,7 +93,7 @@ const MainSidebar = ({ isOpen }: MainSidebarProps) => {
                         </>
                       )}
                     </div>
-                  </SidebarMenuButton>
+                  </Link>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
