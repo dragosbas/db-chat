@@ -1,4 +1,4 @@
-import { Heart, Share2, MessagesSquare, Clock, ArrowUpDown } from "lucide-react";
+import { Heart, Share2, MessagesSquare, Clock, ArrowUpDown, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -15,6 +15,9 @@ interface ChatPartner {
   likes: number;
   shares: number;
   messages: number;
+  lastMessage: string;
+  timestamp: string;
+  isLocked: boolean;
 }
 
 interface ChatPartnersListProps {
@@ -63,14 +66,22 @@ const ChatPartnersList = ({
             )}
           >
             <div className="flex items-center space-x-3">
-              <img
-                src={partner.avatar}
-                alt={partner.name}
-                className="w-10 h-10 rounded-full"
-              />
+              <div className="relative">
+                <img
+                  src={partner.avatar}
+                  alt={partner.name}
+                  className="w-10 h-10 rounded-full"
+                />
+                {partner.isLocked && (
+                  <Lock className="w-4 h-4 absolute -top-1 -right-1 text-yellow-500" />
+                )}
+              </div>
               <div className="flex-1 text-left">
                 <h3 className="font-medium text-white">{partner.name}</h3>
-                <p className="text-sm text-gray-400">{partner.platform}</p>
+                <div className="flex justify-between items-center">
+                  <p className="text-sm text-gray-400">{partner.lastMessage}</p>
+                  <span className="text-xs text-gray-500">{partner.timestamp}</span>
+                </div>
               </div>
             </div>
             <div className="flex items-center space-x-4 mt-2 text-sm text-gray-400">
