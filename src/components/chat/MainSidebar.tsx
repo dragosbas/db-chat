@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { User, Settings, LogOut, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Sidebar,
@@ -16,7 +16,7 @@ interface MainSidebarProps {
   setIsOpen: (open: boolean) => void;
 }
 
-const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
+const MainSidebar = ({ isOpen }: MainSidebarProps) => {
   const platforms = [
     { name: "WhatsApp", status: "connected" },
     { name: "Facebook", status: "connected" },
@@ -30,15 +30,21 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
         isOpen ? "translate-x-0" : "-translate-x-64"
       )}
     >
-      <div className="p-4 border-b border-gray-800">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
-        >
-          <Menu className="w-6 h-6" />
-        </button>
-      </div>
       <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-gray-400">Main Menu</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                  <User className="w-4 h-4" />
+                  <span>Profile</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
         <SidebarGroup>
           <SidebarGroupLabel className="text-gray-400">Platforms</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -47,8 +53,7 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
                 <SidebarMenuItem key={platform.name}>
                   <SidebarMenuButton
                     className={cn(
-                      "w-full flex items-center gap-3 px-4 py-2 rounded-lg transition-colors",
-                      "hover:bg-gray-800",
+                      "w-full flex items-center justify-between px-4 py-2 rounded-lg transition-colors hover:bg-gray-800",
                       platform.status === "connected" && "text-green-400"
                     )}
                   >
@@ -61,9 +66,30 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
                       />
                       <span>{platform.name}</span>
                     </div>
+                    <ChevronRight className="w-4 h-4" />
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-gray-400">Account</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                  <Settings className="w-4 h-4" />
+                  <span>Account Status</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 text-red-400">
+                  <LogOut className="w-4 h-4" />
+                  <span>Log Out</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

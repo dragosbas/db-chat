@@ -1,5 +1,11 @@
-import { Heart, Share2, MessagesSquare } from "lucide-react";
+import { Heart, Share2, MessagesSquare, Clock, ArrowUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface ChatPartner {
   id: string;
@@ -24,12 +30,27 @@ const ChatPartnersList = ({
 }: ChatPartnersListProps) => {
   return (
     <div className="w-80 border-r border-gray-800 bg-[#221F26]">
-      <div className="p-4 border-b border-gray-800">
+      <div className="p-4 border-b border-gray-800 space-y-4">
         <input
           type="text"
           placeholder="Search chats..."
           className="w-full p-2 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-400"
         />
+        <div className="flex justify-between items-center">
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-2 text-gray-400 hover:text-white">
+              <Clock className="w-4 h-4" />
+              <span>Sort by</span>
+              <ArrowUpDown className="w-4 h-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>Last message time</DropdownMenuItem>
+              <DropdownMenuItem>Number of messages</DropdownMenuItem>
+              <DropdownMenuItem>Most likes</DropdownMenuItem>
+              <DropdownMenuItem>Most shares</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
       <div className="overflow-y-auto h-[calc(100vh-73px)]">
         {partners.map((partner) => (

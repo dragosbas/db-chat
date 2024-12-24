@@ -24,16 +24,27 @@ const ChatArea = ({ selectedPartner, messages }: ChatAreaProps) => {
     <div className="flex-1 flex flex-col bg-[#222222]">
       {selectedPartner ? (
         <>
-          <div className="p-4 border-b border-gray-800">
-            <div className="flex items-center space-x-3">
-              <img
-                src={selectedPartner.avatar}
-                alt={selectedPartner.name}
-                className="w-10 h-10 rounded-full"
-              />
-              <div>
-                <h2 className="font-medium text-white">{selectedPartner.name}</h2>
-                <p className="text-sm text-gray-400">{selectedPartner.platform}</p>
+          <div className="flex border-b border-gray-800">
+            <div className="flex-1 p-4">
+              <div className="flex items-center space-x-3">
+                <img
+                  src={selectedPartner.avatar}
+                  alt={selectedPartner.name}
+                  className="w-10 h-10 rounded-full"
+                />
+                <div>
+                  <h2 className="font-medium text-white">{selectedPartner.name}</h2>
+                  <p className="text-sm text-gray-400">{selectedPartner.platform}</p>
+                </div>
+              </div>
+            </div>
+            <div className="w-64 border-l border-gray-800 p-4">
+              <h3 className="font-medium text-white mb-2">Profile Details</h3>
+              <div className="space-y-2 text-sm text-gray-400">
+                <p>Status: Online</p>
+                <p>Location: New York, USA</p>
+                <p>Joined: January 2024</p>
+                <p>Languages: English, Spanish</p>
               </div>
             </div>
           </div>
