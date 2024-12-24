@@ -21,8 +21,8 @@ interface ChatAreaProps {
 
 const ChatArea = ({ selectedPartner, messages }: ChatAreaProps) => {
   return (
-    <div className="flex flex-1">
-      <div className="flex-1 flex flex-col bg-[#222222]">
+    <div className="flex flex-1 min-w-0">
+      <div className="flex-1 flex flex-col bg-[#222222] min-w-0">
         {selectedPartner ? (
           <>
             <div className="flex border-b border-gray-800 p-4">
@@ -75,7 +75,7 @@ const ChatArea = ({ selectedPartner, messages }: ChatAreaProps) => {
       </div>
       
       {selectedPartner && (
-        <div className="w-80 bg-[#1A1F2C] border-l border-gray-800">
+        <div className="w-80 bg-[#1A1F2C] border-l border-gray-800 flex-shrink-0">
           <div className="p-6">
             <div className="text-center mb-6">
               <img

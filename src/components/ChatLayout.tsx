@@ -194,12 +194,14 @@ const ChatLayout = () => {
     <SidebarProvider>
       <div className="flex h-screen overflow-hidden bg-[#1A1F2C]">
         <MainSidebar isOpen={isMainMenuOpen} setIsOpen={setIsMainMenuOpen} />
-        <ChatPartnersList
-          partners={mockChatPartners}
-          selectedPartner={selectedPartner}
-          onSelectPartner={setSelectedPartner}
-        />
-        <ChatArea selectedPartner={selectedPartner} messages={mockMessages} />
+        <div className="flex flex-1 min-w-0">
+          <ChatPartnersList
+            partners={mockChatPartners}
+            selectedPartner={selectedPartner}
+            onSelectPartner={setSelectedPartner}
+          />
+          <ChatArea selectedPartner={selectedPartner} messages={mockMessages} />
+        </div>
       </div>
     </SidebarProvider>
   );
