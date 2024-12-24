@@ -6,6 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ChatPartner {
   id: string;
@@ -65,7 +66,7 @@ const ChatPartnersList = ({
             <div className="px-4 py-2 bg-gray-800/30 text-sm text-gray-400">
               Locked Chats
             </div>
-            <div className="overflow-y-auto max-h-[30vh]">
+            <ScrollArea className="h-[30vh]">
               {lockedPartners.map((partner) => (
                 <ChatPartnerItem
                   key={partner.id}
@@ -74,7 +75,7 @@ const ChatPartnersList = ({
                   onSelect={onSelectPartner}
                 />
               ))}
-            </div>
+            </ScrollArea>
           </div>
         )}
 
@@ -82,7 +83,7 @@ const ChatPartnersList = ({
           <div className="px-4 py-2 bg-gray-800/30 text-sm text-gray-400">
             Active Chats
           </div>
-          <div className="overflow-y-auto h-full">
+          <ScrollArea className="h-[calc(100vh-15rem)]">
             {unlockedPartners.map((partner) => (
               <ChatPartnerItem
                 key={partner.id}
@@ -91,7 +92,7 @@ const ChatPartnersList = ({
                 onSelect={onSelectPartner}
               />
             ))}
-          </div>
+          </ScrollArea>
         </div>
       </div>
     </div>

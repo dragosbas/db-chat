@@ -3,6 +3,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import MainSidebar from "./chat/MainSidebar";
 import ChatPartnersList from "./chat/ChatPartnersList";
 import ChatArea from "./chat/ChatArea";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ChatPartner {
   id: string;
@@ -192,9 +193,9 @@ const ChatLayout = () => {
 
   return (
     <SidebarProvider>
-      <div className="flex h-screen overflow-hidden bg-[#1A1F2C]">
+      <div className="flex h-screen w-full overflow-hidden bg-[#1A1F2C]">
         <MainSidebar isOpen={isMainMenuOpen} setIsOpen={setIsMainMenuOpen} />
-        <div className="flex flex-1 min-w-0">
+        <div className="flex flex-1">
           <ChatPartnersList
             partners={mockChatPartners}
             selectedPartner={selectedPartner}
