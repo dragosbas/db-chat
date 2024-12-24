@@ -38,7 +38,7 @@ const MainSidebar = ({ isOpen }: MainSidebarProps) => {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors">
+                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors border-b border-gray-800">
                   <User className="w-4 h-4" />
                   <span>Profile</span>
                 </SidebarMenuButton>
@@ -57,7 +57,7 @@ const MainSidebar = ({ isOpen }: MainSidebarProps) => {
                 <SidebarMenuItem key={platform.name}>
                   <SidebarMenuButton
                     className={cn(
-                      "w-full flex items-center justify-between px-4 py-2 rounded-lg transition-colors hover:bg-gray-800/50",
+                      "w-full flex items-center justify-between px-4 py-2 rounded-lg transition-colors hover:bg-gray-800/50 border-b border-gray-800",
                       platform.status === "connected" && "text-green-400"
                     )}
                   >
@@ -87,13 +87,13 @@ const MainSidebar = ({ isOpen }: MainSidebarProps) => {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors">
+                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors border-b border-gray-800">
                   <Settings className="w-4 h-4" />
                   <span>Account Status</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors text-red-400">
+                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors text-red-400 border-b border-gray-800">
                   <LogOut className="w-4 h-4" />
                   <span>Log Out</span>
                 </SidebarMenuButton>
