@@ -1,5 +1,5 @@
 class MessageService {
-  private baseUrl = 'http://dchat-backend.azurewebsites.net/api/v1';
+  private baseUrl = 'https://dchat-backend.azurewebsites.net/api/v1';
 
   async getMessages(username: string): Promise<any[]> {
     try {

@@ -30,13 +30,15 @@ const ChatLayout = () => {
   const { data: messages = [] } = useQuery({
     queryKey: ['messages', CURRENT_USER],
     queryFn: () => messageService.getMessages(CURRENT_USER),
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: "Failed to load messages. Please try again later.",
-        variant: "destructive",
-      });
-    },
+    meta: {
+      onError: () => {
+        toast({
+          title: "Error",
+          description: "Failed to load messages. Please try again later.",
+          variant: "destructive",
+        });
+      }
+    }
   });
 
   // Transform API messages to ChatPartner format
