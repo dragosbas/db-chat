@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ChatPartner } from "@/services/types";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ChatPartnersListProps {
   partners: ChatPartner[];
@@ -17,36 +18,38 @@ const ChatPartnersList = ({
   const regularPartners = partners.filter((partner) => !partner.isLocked);
 
   return (
-    <div className="w-80 border-r border-gray-800 bg-[#1A1F2C] overflow-y-auto">
-      {/* Favorites Section */}
-      <div className="p-4 border-b border-gray-800">
-        <h2 className="text-lg font-semibold text-white mb-4">Favorites</h2>
-        <div className="space-y-2">
-          {lockedPartners.map((partner) => (
-            <PartnerCard
-              key={partner.id}
-              partner={partner}
-              isSelected={selectedPartner?.id === partner.id}
-              onSelect={onSelectPartner}
-            />
-          ))}
+    <div className="w-80 border-r border-gray-800 bg-[#1A1F2C]">
+      <ScrollArea className="h-[calc(100vh-4rem)]">
+        {/* Favorites Section */}
+        <div className="p-4 border-b border-gray-800">
+          <h2 className="text-lg font-semibold text-white mb-4">Favorites</h2>
+          <div className="space-y-2">
+            {lockedPartners.map((partner) => (
+              <PartnerCard
+                key={partner.id}
+                partner={partner}
+                isSelected={selectedPartner?.id === partner.id}
+                onSelect={onSelectPartner}
+              />
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Regular Chats Section */}
-      <div className="p-4">
-        <h2 className="text-lg font-semibold text-white mb-4">Messages</h2>
-        <div className="space-y-2">
-          {regularPartners.map((partner) => (
-            <PartnerCard
-              key={partner.id}
-              partner={partner}
-              isSelected={selectedPartner?.id === partner.id}
-              onSelect={onSelectPartner}
-            />
-          ))}
+        {/* Regular Chats Section */}
+        <div className="p-4">
+          <h2 className="text-lg font-semibold text-white mb-4">Messages</h2>
+          <div className="space-y-2">
+            {regularPartners.map((partner) => (
+              <PartnerCard
+                key={partner.id}
+                partner={partner}
+                isSelected={selectedPartner?.id === partner.id}
+                onSelect={onSelectPartner}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </ScrollArea>
     </div>
   );
 };
