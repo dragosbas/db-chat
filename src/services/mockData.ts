@@ -1,4 +1,5 @@
 import { Platform, UserProfile, ChatPartner } from './types';
+import { MessageSquare, Heart, UserPlus, Share2 } from 'lucide-react';
 
 export const mockPlatforms: Platform[] = [
   { 
@@ -49,9 +50,22 @@ export const mockChatPartners: ChatPartner[] = mockPlatforms.map(platform => ({
   name: platform.name,
   avatar: "/placeholder.svg",
   platform: platform.name,
-  likes: Math.floor(Math.random() * 1000),
-  shares: Math.floor(Math.random() * 500),
-  messages: Math.floor(Math.random() * 100),
+  likes: {
+    icon: Heart,
+    count: Math.floor(Math.random() * 1000)
+  },
+  shares: {
+    icon: Share2,
+    count: Math.floor(Math.random() * 500)
+  },
+  messages: {
+    icon: MessageSquare,
+    count: Math.floor(Math.random() * 100)
+  },
+  follows: {
+    icon: UserPlus,
+    count: Math.floor(Math.random() * 200)
+  },
   lastMessage: "Last message from platform",
   timestamp: new Date().toISOString(),
   isLocked: platform.isLocked || false
