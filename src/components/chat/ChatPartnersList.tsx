@@ -1,19 +1,5 @@
 import { cn } from "@/lib/utils";
-import { LucideIcon } from "lucide-react";
-
-interface ChatPartner {
-  id: string;
-  name: string;
-  avatar: string;
-  platform: string;
-  likes: { icon: LucideIcon; count: number };
-  shares: { icon: LucideIcon; count: number };
-  messages: { icon: LucideIcon; count: number };
-  follows: { icon: LucideIcon; count: number };
-  lastMessage: string;
-  timestamp: string;
-  isLocked: boolean;
-}
+import { ChatPartner } from "@/services/types";
 
 interface ChatPartnersListProps {
   partners: ChatPartner[];

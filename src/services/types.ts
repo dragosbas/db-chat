@@ -1,3 +1,5 @@
+import { LucideIcon } from 'lucide-react';
+
 export interface Platform {
   id: string;
   name: string;
@@ -31,9 +33,22 @@ export interface ChatPartner {
   name: string;
   avatar: string;
   platform: string;
-  likes: number;
-  shares: number;
-  messages: number;
+  likes: {
+    icon: LucideIcon;
+    count: number;
+  };
+  shares: {
+    icon: LucideIcon;
+    count: number;
+  };
+  messages: {
+    icon: LucideIcon;
+    count: number;
+  };
+  follows: {
+    icon: LucideIcon;
+    count: number;
+  };
   lastMessage: string;
   timestamp: string;
   isLocked: boolean;

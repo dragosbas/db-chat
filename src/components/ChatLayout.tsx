@@ -7,19 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { messageService } from "@/services/messageService";
 import { useToast } from "@/components/ui/use-toast";
 import { MessageSquare, Heart, UserPlus, Share2 } from "lucide-react";
-
-interface ChatPartner {
-  id: string;
-  name: string;
-  avatar: string;
-  platform: string;
-  likes: number;
-  shares: number;
-  messages: number;
-  lastMessage: string;
-  timestamp: string;
-  isLocked: boolean;
-}
+import { ChatPartner } from "@/services/types";
 
 const CURRENT_USER = "dr.deak.cardio";
 
