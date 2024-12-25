@@ -26,48 +26,44 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
   });
 
   return (
-    <div className="relative">
-      <div
-        className={cn(
-          "w-64 bg-[#221F26] text-white border-r border-gray-800 transition-all duration-300 ease-in-out h-screen",
-          isOpen ? "translate-x-0" : "-translate-x-56"
-        )}
-      >
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className={cn(
-            "absolute right-0 top-4 bg-[#221F26] text-white p-2 rounded-r transform transition-transform duration-300",
-            isOpen ? "translate-x-full" : "translate-x-full rotate-180"
-          )}
-        >
-          <ChevronLeft className="w-4 h-4" />
-        </button>
-
-        <SidebarContent className="p-4">
-          <SidebarGroup>
-            <SidebarGroupLabel className="text-sm font-medium text-gray-400 px-2">
-              Main Menu
-            </SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                <SidebarMenuItem>
-                  <Link 
-                    to="/profile"
-                    className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors border-b border-gray-800"
-                  >
-                    <User className="w-4 h-4" />
-                    <span className={cn("transition-opacity duration-200", !isOpen && "opacity-0")}>Profile</span>
-                  </Link>
-                </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors border-b border-gray-800">
-                    <MessageSquare className="w-4 h-4" />
-                    <span className={cn("transition-opacity duration-200", !isOpen && "opacity-0")}>Chats</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
+    <div className={cn(
+      "w-64 bg-[#221F26] text-white border-r border-gray-800 transition-all duration-300 ease-in-out h-screen",
+      isOpen ? "translate-x-0" : "-translate-x-56"
+    )}>
+      <SidebarContent className="p-4">
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-sm font-medium text-gray-400 px-2 flex justify-between items-center">
+            Main Menu
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <ChevronLeft className={cn(
+                "w-4 h-4 transition-transform duration-300",
+                !isOpen && "rotate-180"
+              )} />
+            </button>
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <Link 
+                  to="/profile"
+                  className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors border-b border-gray-800"
+                >
+                  <User className="w-4 h-4" />
+                  <span className={cn("transition-opacity duration-200", !isOpen && "opacity-0")}>Profile</span>
+                </Link>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors border-b border-gray-800">
+                  <MessageSquare className="w-4 h-4" />
+                  <span className={cn("transition-opacity duration-200", !isOpen && "opacity-0")}>Chats</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
 
           <SidebarGroup className="mt-6">
             <SidebarGroupLabel className="text-sm font-medium text-gray-400 px-2">
@@ -136,8 +132,7 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
-        </SidebarContent>
-      </div>
+      </SidebarContent>
     </div>
   );
 };
