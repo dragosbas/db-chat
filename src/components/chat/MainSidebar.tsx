@@ -1,6 +1,8 @@
 import { User, Settings, LogOut, MessageSquare, Check, LogIn } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { platformService } from "@/services/platformService";
 import {
   Sidebar,
   SidebarContent,
@@ -18,11 +20,10 @@ interface MainSidebarProps {
 }
 
 const MainSidebar = ({ isOpen }: MainSidebarProps) => {
-  const platforms = [
-    { name: "WhatsApp", status: "connected", id: "whatsapp" },
-    { name: "Facebook", status: "connected", id: "facebook" },
-    { name: "Instagram", status: "pending", id: "instagram" },
-  ];
+  const { data: platforms = [] } = useQuery({
+    queryKey: ['platforms'],
+    queryFn: platformService.getPlatforms,
+  });
 
   return (
     <div
