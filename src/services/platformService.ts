@@ -4,20 +4,20 @@ import { mockPlatforms } from './mockData';
 class PlatformService {
   private platforms: Platform[] = mockPlatforms;
 
-  async getPlatforms(): Promise<Platform[]> {
+  getPlatforms = async (): Promise<Platform[]> => {
     return new Promise((resolve) => {
       setTimeout(() => resolve([...this.platforms]), 500);
     });
-  }
+  };
 
-  async getPlatform(id: string): Promise<Platform | undefined> {
+  getPlatform = async (id: string): Promise<Platform | undefined> => {
     return new Promise((resolve) => {
       const platform = this.platforms.find(p => p.id === id);
       setTimeout(() => resolve(platform), 500);
     });
-  }
+  };
 
-  async connectPlatform(platformId: string): Promise<Platform> {
+  connectPlatform = async (platformId: string): Promise<Platform> => {
     return new Promise((resolve, reject) => {
       const platformIndex = this.platforms.findIndex(p => p.id === platformId);
       if (platformIndex === -1) {
@@ -34,9 +34,9 @@ class PlatformService {
       this.platforms[platformIndex] = updatedPlatform;
       setTimeout(() => resolve(updatedPlatform), 500);
     });
-  }
+  };
 
-  async disconnectPlatform(platformId: string): Promise<Platform> {
+  disconnectPlatform = async (platformId: string): Promise<Platform> => {
     return new Promise((resolve, reject) => {
       const platformIndex = this.platforms.findIndex(p => p.id === platformId);
       if (platformIndex === -1) {
@@ -52,7 +52,7 @@ class PlatformService {
       this.platforms[platformIndex] = updatedPlatform;
       setTimeout(() => resolve(updatedPlatform), 500);
     });
-  }
+  };
 }
 
 export const platformService = new PlatformService();
