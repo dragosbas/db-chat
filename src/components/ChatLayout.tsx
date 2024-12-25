@@ -6,6 +6,7 @@ import ChatArea from "./chat/ChatArea";
 import { useQuery } from "@tanstack/react-query";
 import { messageService } from "@/services/messageService";
 import { useToast } from "@/components/ui/use-toast";
+import { MessageSquare, Heart, UserPlus, Share2 } from "lucide-react";
 
 interface ChatPartner {
   id: string;
@@ -41,16 +42,29 @@ const ChatLayout = () => {
     }
   });
 
-  // Transform API messages to ChatPartner format
+  // Transform API messages to ChatPartner format with proper icons
   const chatPartners = messages.map((msg: any, index: number) => ({
     id: index.toString(),
     name: msg.fromusername,
     avatar: "/placeholder.svg",
     platform: "Platform",
-    likes: msg.likecount || 0,
-    shares: msg.sharecount || 0,
-    messages: msg.totalmessages || 0,
-    lastMessage: msg.concatenatedcomments || "No message",
+    likes: {
+      icon: Heart,
+      count: msg.likecount || 0
+    },
+    shares: {
+      icon: Share2,
+      count: msg.sharecount || 0
+    },
+    messages: {
+      icon: MessageSquare,
+      count: msg.totalmessages || 0
+    },
+    follows: {
+      icon: UserPlus,
+      count: msg.followcount || 0
+    },
+    lastMessage: msg.concatenatedcomments || "",
     timestamp: new Date(msg.lasteventtimestamp).toLocaleString(),
     isLocked: false,
   }));
