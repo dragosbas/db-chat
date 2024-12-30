@@ -27,15 +27,15 @@ const ChatArea = ({ selectedPartner, messages }: ChatAreaProps) => {
       <div className="flex-1 flex flex-col bg-[#222222] min-w-0">
         {selectedPartner ? (
           <>
-            <div className="flex border-b border-gray-800 p-4">
-              <div className="flex items-center space-x-3">
+            <div className="flex flex-col border-b border-gray-800 p-4">
+              <div className="flex items-start space-x-4">
                 <img
                   src={selectedPartner.avatar}
                   alt={selectedPartner.name}
-                  className="w-10 h-10 rounded-full"
+                  className="w-12 h-12 rounded-full"
                 />
-                <div>
-                  <h2 className="font-medium text-white">{selectedPartner.name}</h2>
+                <div className="flex-1">
+                  <h2 className="font-medium text-white text-lg">{selectedPartner.name}</h2>
                   <p className="text-sm text-gray-400">
                     {selectedPartner.platform}
                     {selectedPartner.timestamp && (
@@ -44,6 +44,24 @@ const ChatArea = ({ selectedPartner, messages }: ChatAreaProps) => {
                       </span>
                     )}
                   </p>
+                  <div className="grid grid-cols-2 gap-4 mt-3 text-sm">
+                    <div className="flex justify-between text-gray-400">
+                      <span>Location</span>
+                      <span className="text-white">New York, USA</span>
+                    </div>
+                    <div className="flex justify-between text-gray-400">
+                      <span>Languages</span>
+                      <span className="text-white">English, Spanish</span>
+                    </div>
+                    <div className="flex justify-between text-gray-400">
+                      <span>Email</span>
+                      <span className="text-white">contact@example.com</span>
+                    </div>
+                    <div className="flex justify-between text-gray-400">
+                      <span>Phone</span>
+                      <span className="text-white">+1 234 567 890</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -96,67 +114,29 @@ const ChatArea = ({ selectedPartner, messages }: ChatAreaProps) => {
       
       {selectedPartner && (
         <div className="w-80 bg-[#1A1F2C] border-l border-gray-800 flex-shrink-0">
-          <div className="p-6">
-            <div className="text-center mb-6">
-              <img
-                src={selectedPartner.avatar}
-                alt={selectedPartner.name}
-                className="w-24 h-24 rounded-full mx-auto mb-4"
-              />
-              <h2 className="text-xl font-semibold text-white mb-1">
-                {selectedPartner.name}
-              </h2>
-              <p className="text-gray-400">{selectedPartner.platform}</p>
+          <div className="p-4">
+            {/* Video Preview */}
+            <div className="aspect-video bg-black/50 rounded-lg mb-4 relative">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-gray-400">Video Preview</span>
+              </div>
             </div>
             
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-sm font-medium text-gray-400 mb-2">Profile Info</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between text-white">
-                    <span>Status</span>
-                    <span className="text-green-400">Online</span>
-                  </div>
-                  <div className="flex justify-between text-white">
-                    <span>Location</span>
-                    <span>New York, USA</span>
-                  </div>
-                  <div className="flex justify-between text-white">
-                    <span>Joined</span>
-                    <span>January 2024</span>
-                  </div>
-                  <div className="flex justify-between text-white">
-                    <span>Languages</span>
-                    <span>English, Spanish</span>
-                  </div>
+            {/* Subtitles History */}
+            <div>
+              <h3 className="text-sm font-medium text-gray-400 mb-3">Subtitles History</h3>
+              <div className="space-y-3">
+                <div className="bg-gray-800/50 p-3 rounded-lg">
+                  <p className="text-sm text-white">Hello, how are you today?</p>
+                  <span className="text-xs text-gray-400">00:00:15</span>
                 </div>
-              </div>
-              
-              <div>
-                <h3 className="text-sm font-medium text-gray-400 mb-2">Contact Info</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between text-white">
-                    <span>Email</span>
-                    <span>contact@example.com</span>
-                  </div>
-                  <div className="flex justify-between text-white">
-                    <span>Phone</span>
-                    <span>+1 234 567 890</span>
-                  </div>
+                <div className="bg-gray-800/50 p-3 rounded-lg">
+                  <p className="text-sm text-white">I'm doing great, thank you!</p>
+                  <span className="text-xs text-gray-400">00:00:18</span>
                 </div>
-              </div>
-              
-              <div>
-                <h3 className="text-sm font-medium text-gray-400 mb-2">Social Links</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between text-white">
-                    <span>Twitter</span>
-                    <span>@username</span>
-                  </div>
-                  <div className="flex justify-between text-white">
-                    <span>LinkedIn</span>
-                    <span>profile/username</span>
-                  </div>
+                <div className="bg-gray-800/50 p-3 rounded-lg">
+                  <p className="text-sm text-white">Let's discuss the project details.</p>
+                  <span className="text-xs text-gray-400">00:00:22</span>
                 </div>
               </div>
             </div>
