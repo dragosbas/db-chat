@@ -1,69 +1,151 @@
-# Welcome to your Lovable project
+# Chat Interface Application
 
-## Project info
+## Overview
+This is a modern chat interface application built with React, TypeScript, and Vite. It features a three-column layout with navigation, chat list, and chat details/video preview functionality.
 
-**URL**: https://lovable.dev/projects/8eaa30a6-e44d-4b25-b14a-2e5d3feea221
+## Project Structure
 
-## How can I edit this code?
+### Core Components
 
-There are several ways of editing your application.
+1. **Main Layout (`ChatLayout.tsx`)**
+   - Main container component
+   - Manages the three-column layout
+   - Handles state for selected chat partners
+   - Integrates with message service for data fetching
 
-**Use Lovable**
+2. **Navigation (`MainSidebar.tsx`)**
+   - Left sidebar navigation
+   - Platform connection status
+   - Account management options
+   - Collapsible menu with smooth transitions
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8eaa30a6-e44d-4b25-b14a-2e5d3feea221) and start prompting.
+3. **Chat Partners List (`ChatPartnersList.tsx`)**
+   - Middle column showing chat conversations
+   - Separates favorites/locked chats
+   - Displays message previews and interaction metrics
+   - Custom scrolling with shadcn/ui ScrollArea
 
-Changes made via Lovable will be committed automatically to this repo.
+4. **Chat Area (`ChatArea.tsx`)**
+   - Main chat interface with message history
+   - User profile information in header
+   - Message input functionality
+   - Video preview widget
+   - Subtitles history section
 
-**Use your preferred IDE**
+### Services
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. **Message Service (`messageService.ts`)**
+   - Handles API communication for messages
+   - Fetches chat history and updates
+   - Base URL: `dchat-backend.azurewebsites.net/api/v1`
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. **Platform Service (`platformService.ts`)**
+   - Manages platform connections
+   - Handles platform status updates
+   - Mock data implementation for development
 
-Follow these steps:
+3. **Chat Service (`chatService.ts`)**
+   - Manages chat partner data
+   - Handles chat updates and status
+   - Mock implementation for development
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Types and Interfaces (`types.ts`)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- `Platform`: Platform connection details
+- `UserProfile`: User information structure
+- `ChatPartner`: Chat participant information
+- Message and interaction metrics types
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Technologies Used
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Core Framework
+- React 18
+- TypeScript
+- Vite (for build and development)
+
+### UI Components and Styling
+- Tailwind CSS for styling
+- shadcn/ui component library
+- Lucide React for icons
+- Custom theme with dark mode support
+
+### State Management and Data Fetching
+- TanStack Query (React Query) for API data management
+- React Context for global state
+- React Router for navigation
+
+### Development Tools
+- ESLint for code quality
+- TypeScript for type safety
+- Vite plugins for development experience
+
+## Features
+
+1. **Platform Integration**
+   - Multi-platform chat support
+   - Platform connection status
+   - Individual platform management
+
+2. **Chat Management**
+   - Favorites/pinned conversations
+   - Message history
+   - Interaction metrics (likes, shares, follows)
+   - Real-time updates
+
+3. **Media Support**
+   - Video preview functionality
+   - Subtitles history tracking
+   - Message attachments
+
+4. **User Experience**
+   - Responsive design
+   - Custom scrollbars
+   - Smooth transitions
+   - Dark theme support
+
+## Project Setup
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Start development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+3. Build for production:
+```bash
+npm run build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Development Guidelines
 
-**Use GitHub Codespaces**
+1. **Component Structure**
+   - Keep components small and focused
+   - Use TypeScript interfaces for props
+   - Implement proper error handling
+   - Follow shadcn/ui patterns
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+2. **Styling**
+   - Use Tailwind CSS classes
+   - Follow dark theme compatibility
+   - Maintain responsive design
+   - Use shadcn/ui components when possible
 
-## What technologies are used for this project?
+3. **State Management**
+   - Use React Query for API data
+   - Implement proper loading states
+   - Handle error scenarios
+   - Maintain clean data flow
 
-This project is built with .
+## Contributing
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. Follow TypeScript best practices
+2. Maintain consistent code formatting
+3. Write meaningful commit messages
+4. Test thoroughly before submitting changes
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8eaa30a6-e44d-4b25-b14a-2e5d3feea221) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## License
+This project is private and confidential. All rights reserved.
