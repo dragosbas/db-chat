@@ -22,6 +22,8 @@ interface ChatAreaProps {
 }
 
 const ChatArea = ({ selectedPartner, messages }: ChatAreaProps) => {
+  const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+
   return (
     <div className="flex flex-1 min-w-0">
       <div className="flex-1 flex flex-col bg-[#222222] min-w-0">
@@ -112,8 +114,8 @@ const ChatArea = ({ selectedPartner, messages }: ChatAreaProps) => {
         )}
       </div>
       
-      {selectedPartner && (
-        <div className="w-80 bg-[#1A1F2C] border-l border-gray-800 flex-shrink-0">
+      {selectedPartner && isLandscape && (
+        <div className="hidden lg:block w-80 bg-[#1A1F2C] border-l border-gray-800 flex-shrink-0">
           <div className="p-4">
             {/* Video Preview */}
             <div className="aspect-video bg-black/50 rounded-lg mb-4 relative">

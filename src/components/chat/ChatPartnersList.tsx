@@ -18,7 +18,7 @@ const ChatPartnersList = ({
   const regularPartners = partners.filter((partner) => !partner.isLocked);
 
   return (
-    <div className="w-80 border-r border-gray-800 bg-[#1A1F2C]">
+    <div className="w-64 md:w-80 border-r border-gray-800 bg-[#1A1F2C]">
       <ScrollArea className="h-[calc(100vh-4rem)]">
         {/* Favorites Section */}
         <div className="p-4 border-b border-gray-800">
@@ -54,7 +54,6 @@ const ChatPartnersList = ({
   );
 };
 
-// Extracted PartnerCard component for better organization
 const PartnerCard = ({
   partner,
   isSelected,

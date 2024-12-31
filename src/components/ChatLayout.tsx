@@ -8,13 +8,14 @@ import { messageService } from "@/services/messageService";
 import { useToast } from "@/components/ui/use-toast";
 import { MessageSquare, Heart, UserPlus, Share2 } from "lucide-react";
 import { ChatPartner } from "@/services/types";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const CURRENT_USER = "dr.deak.cardio";
 
 const ChatLayout = () => {
-  const [isMainMenuOpen, setIsMainMenuOpen] = useState(true);
   const [selectedPartner, setSelectedPartner] = useState<ChatPartner | null>(null);
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
   const { data: messages = [] } = useQuery({
     queryKey: ['messages', CURRENT_USER],
@@ -60,7 +61,7 @@ const ChatLayout = () => {
   return (
     <SidebarProvider>
       <div className="flex h-screen w-full overflow-hidden bg-[#1A1F2C]">
-        <MainSidebar isOpen={isMainMenuOpen} setIsOpen={setIsMainMenuOpen} />
+        <MainSidebar isOpen={!isMobile} setIsOpen={() => {}} />
         <div className="flex flex-1">
           <ChatPartnersList
             partners={chatPartners}
