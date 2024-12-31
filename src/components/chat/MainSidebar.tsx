@@ -27,17 +27,17 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
 
   return (
     <div className={cn(
-      "relative w-64 bg-[#221F26] text-white border-r border-gray-800 transition-all duration-300 ease-in-out h-screen",
-      isOpen ? "translate-x-0 w-64" : "w-16"
+      "relative bg-[#221F26] text-white border-r border-gray-800 transition-all duration-300 ease-in-out h-screen",
+      isOpen ? "w-64" : "w-14" // Made collapsed state thinner
     )}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "absolute -right-3 top-6 z-50 flex h-6 w-6 items-center justify-center rounded-full bg-[#221F26] border border-gray-800 text-gray-200 hover:text-white hover:bg-gray-800 transition-all duration-300",
+          "absolute -right-3 top-6 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-[#221F26] border border-gray-800 text-gray-200 hover:text-white hover:bg-gray-800 transition-all duration-300",
           !isOpen && "rotate-180"
         )}
       >
-        <ChevronLeft className="h-4 w-4" />
+        <ChevronLeft className="h-5 w-5" /> {/* Made toggle icon larger */}
       </button>
 
       <SidebarContent className="p-4">
@@ -53,7 +53,10 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
               <SidebarMenuItem>
                 <Link 
                   to="/profile"
-                  className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors"
+                  className={cn(
+                    "w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors",
+                    !isOpen && "justify-center px-2" // Center icons in collapsed state
+                  )}
                   title={!isOpen ? "Profile" : undefined}
                 >
                   <User className="w-4 h-4 shrink-0" />
@@ -62,7 +65,10 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton 
-                  className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors"
+                  className={cn(
+                    "w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors",
+                    !isOpen && "justify-center px-2" // Center icons in collapsed state
+                  )}
                   title={!isOpen ? "Chats" : undefined}
                 >
                   <MessageSquare className="w-4 h-4 shrink-0" />
@@ -90,11 +96,15 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
                     to={`/platform/${platform.id}`}
                     className={cn(
                       "w-full flex items-center gap-3 px-4 py-2 rounded-lg transition-colors hover:bg-gray-800/50",
+                      !isOpen && "justify-center px-2", // Center icons in collapsed state
                       platform.status === "connected" ? "text-green-400" : "text-gray-400"
                     )}
                     title={!isOpen ? platform.name : undefined}
                   >
-                    <div className="flex items-center gap-2">
+                    <div className={cn(
+                      "flex items-center gap-2",
+                      !isOpen && "justify-center" // Center icons in collapsed state
+                    )}>
                       <div
                         className={cn(
                           "w-2 h-2 rounded-full shrink-0",
@@ -138,7 +148,10 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton 
-                  className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors"
+                  className={cn(
+                    "w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors",
+                    !isOpen && "justify-center px-2" // Center icons in collapsed state
+                  )}
                   title={!isOpen ? "Account Status" : undefined}
                 >
                   <Settings className="w-4 h-4 shrink-0" />
@@ -147,7 +160,10 @@ const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton 
-                  className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors text-red-400"
+                  className={cn(
+                    "w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors text-red-400",
+                    !isOpen && "justify-center px-2" // Center icons in collapsed state
+                  )}
                   title={!isOpen ? "Log Out" : undefined}
                 >
                   <LogOut className="w-4 h-4 shrink-0" />
