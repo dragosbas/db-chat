@@ -105,35 +105,35 @@ const PartnerCard = ({
           className="w-10 h-10 rounded-full"
         />
         <div className="flex-1 min-w-0">
-          <div className="flex justify-between items-start">
+          <div className="flex justify-between items-center">
             <h3 className="font-medium text-white truncate">
               {partner.name}
             </h3>
-            <span className="text-xs text-gray-400 whitespace-nowrap ml-1">
-              {partner.timestamp}
-            </span>
+            <div className="flex items-center gap-2 ml-2">
+              {Object.entries({
+                messages: partner.messages,
+                likes: partner.likes,
+                follows: partner.follows,
+                shares: partner.shares,
+              }).map(([key, value]) => (
+                <div
+                  key={key}
+                  className="flex items-center gap-0.5 text-gray-400"
+                >
+                  <value.icon size={12} />
+                  <span className="text-xs">{value.count}</span>
+                </div>
+              ))}
+              <span className="text-xs text-gray-400 whitespace-nowrap ml-2">
+                {partner.timestamp}
+              </span>
+            </div>
           </div>
           {partner.lastMessage && (
             <p className="text-sm text-gray-400 truncate mt-1">
               {partner.lastMessage}
             </p>
           )}
-          <div className="flex items-center gap-3 mt-2">
-            {Object.entries({
-              messages: partner.messages,
-              likes: partner.likes,
-              follows: partner.follows,
-              shares: partner.shares,
-            }).map(([key, value]) => (
-              <div
-                key={key}
-                className="flex items-center gap-0.5 text-gray-400"
-              >
-                <value.icon size={12} />
-                <span className="text-xs">{value.count}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
