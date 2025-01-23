@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 
 interface MainSidebarProps {
-  isOpen: boolean;
+  isOpen?: boolean;
   setIsOpen: (open: boolean) => void;
 }
 
@@ -25,19 +25,23 @@ const MainSidebar = ({ isOpen = false, setIsOpen }: MainSidebarProps) => {
     queryFn: platformService.getPlatforms,
   });
 
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className={cn(
       "relative bg-[#221F26] text-white border-r border-gray-800 transition-all duration-300 ease-in-out h-screen",
-      isOpen ? "w-64" : "w-14" // Made collapsed state thinner
+      isOpen ? "w-64" : "w-14"
     )}>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggle}
         className={cn(
           "absolute -right-3 top-6 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-[#221F26] border border-gray-800 text-gray-200 hover:text-white hover:bg-gray-800 transition-all duration-300",
           !isOpen && "rotate-180"
         )}
       >
-        <ChevronLeft className="h-5 w-5" /> {/* Made toggle icon larger */}
+        <ChevronLeft className="h-5 w-5" />
       </button>
 
       <SidebarContent className="p-4">
