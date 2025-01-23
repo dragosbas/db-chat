@@ -10,7 +10,7 @@ import { MessageSquare, Heart, UserPlus, Share2 } from "lucide-react";
 import { ChatPartner } from "@/services/types";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-const CURRENT_USER = "dr.deak.cardio";
+const CURRENT_USER = "ecoron.ro";
 
 const ChatLayout = () => {
   const [selectedPartner, setSelectedPartner] = useState<ChatPartner | null>(null);
