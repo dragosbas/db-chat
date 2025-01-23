@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface ChatPartner {
   id: string;
@@ -95,16 +96,12 @@ const ChatArea = ({ selectedPartner, messages }: ChatAreaProps) => {
               ))}
             </div>
             <div className="p-4 border-t border-gray-800">
-              <div className="flex space-x-2">
-                <input
-                  type="text"
-                  placeholder="Type a message..."
-                  className="flex-1 p-2 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-400"
-                />
-                <button className="px-4 py-2 bg-[#6E59A5] text-white rounded-lg hover:opacity-90 transition-opacity">
-                  Send
-                </button>
-              </div>
+              <Button 
+                className="w-full bg-[#6E59A5] hover:bg-[#5D4B8C] text-white py-3"
+                size="lg"
+              >
+                Contact Sender
+              </Button>
             </div>
           </>
         ) : (
