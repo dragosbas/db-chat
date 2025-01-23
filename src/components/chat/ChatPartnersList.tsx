@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import { ChatPartner } from "@/services/types";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useState } from "react";
+import { Search } from "lucide-react";
 
 interface ChatPartnersListProps {
   partners: ChatPartner[];
@@ -13,18 +15,41 @@ const ChatPartnersList = ({
   selectedPartner,
   onSelectPartner,
 }: ChatPartnersListProps) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   // Separate locked (favorite) and regular chats
   const lockedPartners = partners.filter((partner) => partner.isLocked);
   const regularPartners = partners.filter((partner) => !partner.isLocked);
 
+  // Filter function for both sections
+  const filterPartners = (partners: ChatPartner[]) => {
+    return partners.filter((partner) =>
+      partner.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      partner.lastMessage?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
   return (
     <div className="w-64 md:w-80 border-r border-gray-800 bg-[#1A1F2C]">
-      <ScrollArea className="h-[calc(100vh-4rem)]">
+      <div className="p-4 border-b border-gray-800">
+        <div className="relative mb-4">
+          <input
+            type="text"
+            placeholder="Search messages..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-[#2A2F3C] text-white rounded-lg pl-10 pr-4 py-2 border border-gray-700 focus:outline-none focus:border-[#9b87f5]"
+          />
+          <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+        </div>
+      </div>
+
+      <ScrollArea className="h-[calc(100vh-8rem)]">
         {/* Favorites Section */}
         <div className="p-4 border-b border-gray-800">
           <h2 className="text-lg font-semibold text-white mb-4">Favorites</h2>
           <div className="space-y-2">
-            {lockedPartners.map((partner) => (
+            {filterPartners(lockedPartners).map((partner) => (
               <PartnerCard
                 key={partner.id}
                 partner={partner}
@@ -39,7 +64,7 @@ const ChatPartnersList = ({
         <div className="p-4">
           <h2 className="text-lg font-semibold text-white mb-4">Messages</h2>
           <div className="space-y-2">
-            {regularPartners.map((partner) => (
+            {filterPartners(regularPartners).map((partner) => (
               <PartnerCard
                 key={partner.id}
                 partner={partner}
