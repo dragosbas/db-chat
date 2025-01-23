@@ -14,6 +14,7 @@ const CURRENT_USER = "ecoron.ro";
 
 const ChatLayout = () => {
   const [selectedPartner, setSelectedPartner] = useState<ChatPartner | null>(null);
+  const [isOpen, setIsOpen] = useState(false); // Initialize as closed
   const { toast } = useToast();
   const isMobile = useIsMobile();
 
@@ -61,7 +62,7 @@ const ChatLayout = () => {
   return (
     <SidebarProvider>
       <div className="flex h-screen w-full overflow-hidden bg-[#1A1F2C]">
-        <MainSidebar isOpen={!isMobile} setIsOpen={() => {}} />
+        <MainSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
         <div className="flex flex-1">
           <ChatPartnersList
             partners={chatPartners}
