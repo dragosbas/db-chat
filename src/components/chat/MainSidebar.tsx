@@ -19,7 +19,7 @@ interface MainSidebarProps {
   setIsOpen: (open: boolean) => void;
 }
 
-const MainSidebar = ({ isOpen, setIsOpen }: MainSidebarProps) => {
+const MainSidebar = ({ isOpen = false, setIsOpen }: MainSidebarProps) => {
   const { data: platforms = [] } = useQuery({
     queryKey: ['platforms'],
     queryFn: platformService.getPlatforms,
